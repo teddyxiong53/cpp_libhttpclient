@@ -106,7 +106,7 @@ bool CurlEasyHandleWrapper::setPostContent(
 
 
 bool CurlEasyHandleWrapper::setTransferTimeout(const long timeoutSeconds) {
-    setopt(CURLOPT_TIMEOUT, timeoutSeconds);
+    return setopt(CURLOPT_TIMEOUT, timeoutSeconds);
 }
 
 bool CurlEasyHandleWrapper::addPostStream(const std::string& fieldName, void *userData) {
@@ -143,12 +143,14 @@ bool CurlEasyHandleWrapper::setWriteCallback(CurlCallback callback, void *userDa
     bool ret = false;
     ret = setopt(CURLOPT_WRITEFUNCTION, callback);
     if(ret) {
+        myloge("CURLOPT_WRITEFUNCTION, ret:%d", ret);
         return false;
     }
     if(userData) {
         ret = setopt(CURLOPT_WRITEDATA, userData);
     }
     if(ret) {
+        myloge("CURLOPT_WRITEDATA");
         return false;
     }
     return true;
@@ -252,5 +254,5 @@ CURLcode CurlEasyHandleWrapper::perform() {
 
 bool CurlEasyHandleWrapper::reset() {
     //todo
-
+    return true;
 }

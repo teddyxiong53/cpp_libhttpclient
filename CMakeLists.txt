@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-add_definitions("-Wall -std=c++11 -DDEBUG=1")
+add_definitions("-Wall -std=c++11 -DDEBUG=1 -g")
 add_subdirectory(mod1)
 add_subdirectory(mod2)
 include_directories("./mod1/include")
